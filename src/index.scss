@@ -1,68 +1,79 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+:root{
+  --primary: #8C1111;
+  --secondary: #262626;
+  --text: #FFFFFF;
+  --background: #0D0D0D;
+}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+    font-family:"Raleway", sans-serif;
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 7px;
+      }
+      ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--secondary);
+        border: 0px none #ffffff;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--secondary);
+        
+      }
+      ::-webkit-scrollbar-thumb:active {
+        background: var(--secondary);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+      }
+      ::-webkit-scrollbar-track {
+        background:var(--primary);
+        border: 0px none #ffffff;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-track:hover {
+        background: var(--primary);
+      }
+      ::-webkit-scrollbar-track:active {
+        background: var(--primary);
+      }
+      ::-webkit-scrollbar-corner {
+        background: var(--primary);
+      }
   }
-  a:hover {
-    color: #747bff;
+
+  body {
+    background-color: var(--background);
+    color: var(--text);
   }
-  button {
-    background-color: #f9f9f9;
+  .notification-container {
+    top: 64px;
+    width: initial;
+    max-width: 500px;
   }
-}
+  .padding-containers {
+    padding: 15px 0;
+  }
+  .padding-containers > div {
+    padding: 7px;
+  }
+
+  .padding-children > div {
+    padding: 7px !important;
+  }
+  .autocomplete .MuiPaper-root {
+    position: absolute;
+    z-index: 999;
+    min-width: initial !important;
+    max-width: calc(100% - 53px);
+  }
+  
