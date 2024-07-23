@@ -54,6 +54,9 @@
   body {
     background-color: var(--background);
     color: var(--text);
+    p{
+      font-size: 12px;
+    }
   }
   .notification-container {
     top: 64px;

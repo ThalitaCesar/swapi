@@ -12,7 +12,7 @@ const Description: React.FC = () => {
     return (
       <div className="flex flex-column justify-center items-center">
   
-        <div className="max-w-[500px] m-[20px] mt-[30%] md:mt-[30%] xl:mt-[12%] md:ml-[-23%]">
+        <div className="max-w-[500px] m-[20px] mt-[30%] md:mt-[10%] xl:mt-[12%] md:ml-[-23%]">
           <h1 className="text-[30px] md:text-[30px] font-semibold mb-[12px]">
             Embarque em uma Odisséia Interestelar em uma Galáxia Muito, Muito Distante
           </h1>

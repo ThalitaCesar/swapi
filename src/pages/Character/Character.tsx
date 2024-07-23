@@ -1,8 +1,18 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import CardCharacterInformation from './components/CardCharacterInformation/CardCharacterInformation';
+import bgImage from '../../assets/bg4.jpg'; 
+import './Character.scss'; 
+import Navbar from '../../components/Navbar/Navbar';
+import Button from '../../components/Button/Button';
 
 const Character: React.FC = () => {
   const { state } = useLocation<{ character: any }>(); 
+  const navigate = useNavigate();
+
+  const handleVoltar = () => {
+    navigate(-1); 
+  };
 
   if (!state || !state.character) {
     return <div>Personagem não encontrado.</div>;
@@ -10,18 +20,21 @@ const Character: React.FC = () => {
 
   const { character } = state;
 
+  console.log(character)
+
   return (
-    <div>
-      <h1>{character.name}</h1>
-      <p>Height: {character.height}</p>
-      <p>Mass: {character.mass}</p>
-      <p>Hair Color: {character.hair_color}</p>
-      <p>Skin Color: {character.skin_color}</p>
-      <p>Eye Color: {character.eye_color}</p>
-      <p>Birth Year: {character.birth_year}</p>
-      <p>Gender: {character.gender}</p>
-      <p>Homeworld: {character.homeworld}</p>
+
+    <div className="character-container">
+    <div className="background-image" style={{ backgroundImage: `url(${bgImage})` }}></div>
+    <div className="gradient"></div>
+    <div className="content">
+    <Navbar/>
+    <CardCharacterInformation character={character} />
+    <div className="button-container">
+          <Button text="Voltar" onClick={handleVoltar} />
+        </div>
     </div>
+  </div>
   );
 };
 
