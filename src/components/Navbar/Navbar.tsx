@@ -1,22 +1,26 @@
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
   return (
     <nav>
       <div className="container mx-auto flex justify-between items-center">
-        <p className="text-xl font-bold">Swapi</p>
+        <p className="text-xl font-bold cursor-pointer"  onClick={handleHomeClick}>Swapi</p>
 
         <div className="hidden md:flex space-x-6">
-          <NavLink href="#">Home</NavLink>
+          <NavLink href='/'>Home</NavLink>
           <NavLink href="#">Our history</NavLink>
           <NavLink href="#">Services</NavLink>
         </div>
 
 
         <div className="md:hidden">
-         {/* <img src={menuIcon} alt="Menu" className="cursor-pointer" />*/}
-       <p>menu</p>
+          <p></p>
         </div>
 
         <div className="hidden md:flex space-x-6">

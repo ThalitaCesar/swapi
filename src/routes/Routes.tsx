@@ -15,7 +15,7 @@ const Router = () => {
     <Routes>
         <Route index element ={<Home/>}   />
         <Route path="/search" element={<Search/>}  />
-        <Route path="/character/:characterId" element={<Character/>}  />
+        <Route path="/character" element={<Character />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
     </BrowserRouter>
