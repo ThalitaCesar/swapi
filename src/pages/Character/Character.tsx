@@ -22,7 +22,6 @@ const Character: React.FC = () => {
     navigate(-1);
   };
 
-  // Verifica se o character ainda é null, então não renderiza o CardCharacterInformation
   if (!character) {
     return <div>Carregando...</div>;
   }
@@ -35,7 +34,6 @@ const Character: React.FC = () => {
       <div className="gradient"></div>
       <div className="content">
         <Navbar />
-        {/* Verifica se character é null antes de passá-lo para o CardCharacterInformation */}
         {character && <CardCharacterInformation character={character} />}
         <div className="button-container">
           <Button text="Voltar" onClick={handleVoltar} />

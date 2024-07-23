@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './CardCharacterInformation.scss';
 import bgImage from '../../../../assets/bg3.jpg';
 import axios from 'axios';
+import ModalStarship from '../ModalStarship/ModalStarship'; 
+import { MdOpenInNew } from "react-icons/md";
 
 interface CardCharacterInformationProps {
   character: any;
@@ -10,22 +12,24 @@ interface CardCharacterInformationProps {
 const CardCharacterInformation: React.FC<CardCharacterInformationProps> = ({ character }) => {
   const [films, setFilms] = useState<string[]>([]);
   const [speciesName, setSpeciesName] = useState<string>('');
-  const [starshipsNames, setStarshipsNames] = useState<string[]>([]);
+  const [starships, setStarships] = useState<any[]>([]);
   const [homeworldName, setHomeworldName] = useState<string>('');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [selectedStarshipUrl, setSelectedStarshipUrl] = useState<string>('');
 
   useEffect(() => {
     const fetchFilms = async () => {
-      try {
-        const promises = character.films.map(async (filmUrl: string) => {
-          const response = await axios.get(filmUrl);
-          return response.data.title;
-        });
-        const filmsData = await Promise.all(promises);
-        setFilms(filmsData);
-      } catch (error) {
-        console.error('Error fetching films:', error);
-      }
-    };
+        try {
+          const promises = character.films.map(async (filmUrl: string) => {
+            const response = await axios.get(filmUrl);
+            return response.data.title;
+          });
+          const filmsData = await Promise.all(promises);
+          setFilms(filmsData.length > 0 ? filmsData : ['Filme não especificado']);
+        } catch (error) {
+          console.error('Error fetching films:', error);
+        }
+      };
 
     const fetchSpecies = async () => {
       try {
@@ -41,27 +45,26 @@ const CardCharacterInformation: React.FC<CardCharacterInformationProps> = ({ cha
         }
       } catch (error) {
         console.error('Error fetching species:', error);
-        setSpeciesName('Erro ao carregar espécie');
       }
     };
 
     const fetchStarships = async () => {
-      try {
-        if (character.starships.length === 0) {
-          setStarshipsNames(['Nenhuma nave registrada']);
-          return;
+        try {
+          if (character.starships.length === 0) {
+            setStarships([]);
+          } else {
+            const promises = character.starships.map(async (starshipUrl: string) => {
+              const response = await axios.get(starshipUrl);
+              return response.data;
+            });
+            const starshipsData = await Promise.all(promises);
+            setStarships(starshipsData);
+          }
+        } catch (error) {
+          console.error('Error fetching starships:', error);
+          setStarships([]);
         }
-
-        const promises = character.starships.map(async (starshipUrl: string) => {
-          const response = await axios.get(starshipUrl);
-          return response.data.name;
-        });
-        const starshipsData = await Promise.all(promises);
-        setStarshipsNames(starshipsData);
-      } catch (error) {
-        console.error('Error fetching starships:', error);
-      }
-    };
+      };
 
     const fetchHomeworld = async () => {
       try {
@@ -77,6 +80,16 @@ const CardCharacterInformation: React.FC<CardCharacterInformationProps> = ({ cha
     fetchStarships();
     fetchHomeworld();
   }, [character]);
+
+  const openModal = (starshipUrl: string) => {
+    setSelectedStarshipUrl(starshipUrl);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedStarshipUrl('');
+    setModalOpen(false);
+  };
 
   return (
     <div className="card-container">
@@ -100,11 +113,26 @@ const CardCharacterInformation: React.FC<CardCharacterInformationProps> = ({ cha
             </div>
             <div>
               <p className="font-semibold">Naves:</p>
-              <p>{starshipsNames.join(', ')}</p>
+              {starships.length > 0 ? (
+                <ul>
+                  {starships.map((starship: any, index: number) => (
+                    <li key={index}>
+                      <button onClick={() => openModal(starship.url)}>
+                        <p className="flex items-center hover:underline">
+                          {starship.name} 
+                          <span className="ml-2 text-primary"> <MdOpenInNew /> </span>
+                        </p>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>Nave não especificada</p>
+              )}
             </div>
             <div>
               <p className="font-semibold">Armas:</p>
-              <p></p>
+              <p>Armas não especificadas.</p>
             </div>
             <div>
               <p className="font-semibold">Planeta:</p>
@@ -123,6 +151,9 @@ const CardCharacterInformation: React.FC<CardCharacterInformationProps> = ({ cha
           <div className="gradient-right"></div>
         </div>
       </div>
+      {modalOpen && (
+        <ModalStarship starshipUrl={selectedStarshipUrl} onClose={closeModal} />
+      )}
     </div>
   );
 };
