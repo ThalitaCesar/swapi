@@ -15,7 +15,7 @@ const InputSearch: React.FC<{ onSearch: (results: any[]) => void }> = ({ onSearc
   };
 
   return (
-    <div className="bg-secondary text-[13px] bg-opacity-20 mt-[30px] flex justify-items-center justify-center items-center w-full h-full p-[7px] px-[20px] rounded-full">
+    <div className="bg-secondary text-[13px] bg-opacity-50 mt-[30px] flex justify-items-center justify-center items-center w-full h-full p-[7px] px-[20px] rounded-full">
       <input
         className="w-full bg-transparent px-4 py-2 rounded-full outline-none"
         placeholder="Pesquisar Personagem..."

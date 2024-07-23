@@ -12,7 +12,6 @@ const Search: React.FC = () => {
     <div className="gradient"></div>
     <div className="content">
       <Navbar/>
-      <InputSearch/>
       <CardListCharacters/>
     </div>
   </div>

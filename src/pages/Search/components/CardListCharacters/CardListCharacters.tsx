@@ -41,7 +41,7 @@ const CardListCharacters: React.FC = () => {
   };
 
   return (
-    <div className="bg-secondary bg-opacity-50 mt-[30px] flex flex-col justify-center items-center w-full h-full p-[22px] rounded-[20px]">
+    <div className="bg-secondary bg-opacity-20 mt-[30px] flex flex-col justify-center items-center w-full h-full p-[22px] rounded-[20px]">
       <InputSearch onSearch={handleSearchResults} />
 
       <div className="mt-[30px] flex flex-wrap justify-center items-center w-full h-full">

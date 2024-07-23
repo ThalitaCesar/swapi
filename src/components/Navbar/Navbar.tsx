@@ -13,9 +13,9 @@ const Navbar: React.FC = () => {
         <p className="text-xl font-bold cursor-pointer"  onClick={handleHomeClick}>Swapi</p>
 
         <div className="hidden md:flex space-x-6">
-          <NavLink href='/'>Home</NavLink>
-          <NavLink href="#">Our history</NavLink>
-          <NavLink href="#">Services</NavLink>
+          <NavLink href='/'>Inicio</NavLink>
+          <NavLink href="#">Nossa História</NavLink>
+          <NavLink href="#">Serviços</NavLink>
         </div>
 
 
@@ -24,8 +24,9 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden md:flex space-x-6">
-          <NavLink href="#">Login</NavLink>
-          <NavLink href="#">Register</NavLink>
+          <NavLink href="#">Entre</NavLink>
+          <p> | </p>
+          <NavLink href="#">Cadastre-se</NavLink>
         </div>
       </div>
     </nav>
