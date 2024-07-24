@@ -14,9 +14,9 @@ const AppRouter = () => {
       const jwtToken = localStorage.getItem('jwtToken');
       setIsAuthenticated(!!jwtToken);
     };
-
-    checkAuth();
-  }, []);
+  
+    checkAuth(); 
+  }, [isAuthenticated]); 
 
   const PrivateRoute: React.FC<{ path: string; element: React.ReactNode }> = ({ path, element }) => {
     return isAuthenticated ? (

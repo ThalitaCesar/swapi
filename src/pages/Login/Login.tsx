@@ -15,7 +15,8 @@ const Login: React.FC = () => {
       const token = await login(username, password);
       if (token) {
         localStorage.setItem('jwtToken', token);
-        navigate('/search'); 
+        setIsAuthenticated(true); 
+        navigate('/search');
       } else {
         console.error('Credenciais inválidas');
       }
