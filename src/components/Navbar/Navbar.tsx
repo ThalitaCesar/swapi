@@ -20,11 +20,11 @@ const Navbar: React.FC = () => {
 
 
         <div className="md:hidden">
-          <p></p>
+        <NavLink href="/login">Login</NavLink>
         </div>
 
         <div className="hidden md:flex space-x-6">
-          <NavLink href="#">Entre</NavLink>
+          <NavLink href="/login">Entre</NavLink>
           <p> | </p>
           <NavLink href="#">Cadastre-se</NavLink>
         </div>

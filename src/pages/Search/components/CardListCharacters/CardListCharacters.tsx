@@ -11,11 +11,11 @@ const CardListCharacters: React.FC = () => {
   const itemsPerPage = 10;
   const [totalItems, setTotalItems] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCharacters();
-  }, [currentPage]); 
+  }, [currentPage]);
 
   const fetchCharacters = async () => {
     try {
@@ -33,11 +33,17 @@ const CardListCharacters: React.FC = () => {
 
   const handleSearchResults = (results: any[]) => {
     setCharacters(results);
-    setTotalItems(results.length); 
+    setTotalItems(results.length);
   };
 
   const handleCharacterClick = (character: any) => {
-    navigate(`/character`, { state: { character } }); 
+    // Verificar se o usuário está autenticado antes de redirecionar
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+      navigate(`/character`, { state: { character } });
+    } else {
+      navigate('/login'); // Redirecionar para a página de login se não estiver autenticado
+    }
   };
 
   return (
