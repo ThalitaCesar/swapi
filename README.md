@@ -19,7 +19,6 @@ A Swapi é uma api pública do Star Wars que lista os personagens, as naves, os 
 - [React](https://pt-br.reactjs.org) para construção da interface do usuário.
 - [Vite](https://vitejs.dev/) para o site react.
 - [React Router](https://reactrouter.com) para gerenciamento de rotas na aplicação.
-- [Redux](https://redux.js.org) para gerenciamento de estado global.
 - [Tailwind CSS](https://tailwindcss.com/) lib para estilização.
 - [SASS](https://sass-lang.com/) para estilização css.
 - [JWT](https://jwt.io/) para autenticação de login.
